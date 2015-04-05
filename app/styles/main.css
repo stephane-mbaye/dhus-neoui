@@ -1,24 +1,46 @@
 body {
-  background: #fafafa;
+  background: #fff;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   color: #333;
 }
 
-.hero-unit {
-  margin: 50px auto 0 auto;
-  width: 300px;
-  font-size: 18px;
-  font-weight: 200;
-  line-height: 30px;
-  background-color: #eee;
-  border-radius: 6px;
-  padding: 60px;
+.content {
+  background: blue;
+  height: 100%;
 }
 
-.hero-unit h1 {
-  font-size: 60px;
-  line-height: 1;
-  letter-spacing: -1px;
+core-list {
+   background: grey;
+   min-width: 400px;
+   max-width: 400px;
+}
+
+core-list .row {
+   background: white;
+   height: 50px;
+   padding: 16px;
+}
+
+core-list .thumbnail {
+   background: black;
+   width: 40px;
+   height: 40px;
+   margin-right: 16px;
+}
+
+google-map {
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 800px) {
+#map {
+  display: none;
+}
+core-list {
+   width: 100%;
+   min-width: none;
+   max-width: none;
+}
 }
 
 .browsehappy {
@@ -34,5 +56,5 @@ body {
 
 core-toolbar {
   color: #FAFAFA;
-  background-color: #009688;
+  background-color: #373773;
 }
