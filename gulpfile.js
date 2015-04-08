@@ -73,8 +73,7 @@ gulp.task('images', function () {
 gulp.task('copy', function () {
   var app = gulp.src([
     'app/*',
-    '!app/test',
-    'node_modules/apache-server-configs/dist/.htaccess'
+    '!app/test'
   ], {
     dot: true
   }).pipe(gulp.dest('dist'));
@@ -183,7 +182,7 @@ gulp.task('default', ['clean'], function (cb) {
   runSequence(
     ['copy', 'styles'],
     'elements',
-    ['jshint', 'images', 'fonts', 'html'],
+    [/* 'jshint', */ 'images', 'fonts', 'html'],
     'vulcanize',
     cb);
 });
@@ -192,7 +191,7 @@ gulp.task('default', ['clean'], function (cb) {
 // Update `url` below to the public URL for your site
 gulp.task('pagespeed', function (cb) {
   // Update the below URL to the public URL of your site
-  pagespeed.output('example.com', {
+  pagespeed.output('dhus.gael.fr/dhus-neoui', {
     strategy: 'mobile',
     // By default we use the PageSpeed Insights free (no API key) tier.
     // Use a Google Developer API key if you have one: http://goo.gl/RkN0vE
