@@ -11,10 +11,9 @@
    <link rel="import" href="elements/elements.html">
 </head>
 
-<body fullbleed fit layout vertical>
+<body fullbleed layout vertical>
 
-           
-   <core-ajax id="searchResults" url="http://dhus.gael.fr/dhus/search"
+   <core-ajax id="searchResults" url="/dhus/search"
               params='{"format":"json", "q":"NOT RAW", "rows":"500"}'
               handleAs="json" auto>
    </core-ajax>
@@ -28,14 +27,25 @@
       <core-header-panel drawer>
 
         <!-- Drawer Toolbar -->
-        <core-toolbar></core-toolbar>
+        <core-toolbar>
+<!--            <core-image id="logo" src="images/logo.png" sizing="contain" preload fade></core-image> -->
+           <div flex>DHuS</div>
+        </core-toolbar>
 
         <!-- Drawer Content -->
+        <more-route-selector>
         <core-menu selected="0">
-          <core-item icon="search" label="Search Products"></core-item>
-          <core-item icon="social:person" label="Profile"></core-item>
-          <core-item icon="settings" label="Seetings"></core-item>
+          <core-item icon="search" label="Search Products" route="search">
+<!--              <a href="{{urlFor('search')}}"></a> -->
+          </core-item>
+          <core-item icon="social:person" label="Profile" route="profile">
+<!--              <a href="{{urlFor('profile')}}"></a> -->
+          </core-item>
+          <core-item icon="settings" label="Settings" route="settings">
+<!--              <a href="{{urlFor('settings')}}"></a> -->
+          </core-item>
         </core-menu>
+        </more-route-selector>
 
       </core-header-panel>
 
@@ -43,32 +53,80 @@
       <core-header-panel main vertical layout>
 
         <!-- Main Toolbar -->
-        <core-toolbar>
+        <core-toolbar vertical layout bottom>
           <paper-icon-button icon="menu" core-drawer-toggle></paper-icon-button>
-          <span>Data Hub Service - DHuS</span>
+          <paper-dropdown-menu label="Collection">
+             <paper-dropdown class="dropdown" transition="">
+                <core-menu class="menu"  selected="0">
+                   <template repeat="{{collections}}">
+                      <paper-item>{{}}</paper-item>
+                   </template>
+                </core-menu>
+             </paper-dropdown>
+          </paper-dropdown-menu>
+<!--           <div>Search</div> -->
+
+<!-- temporaly disabled event for paper-input -->
+<!--              onchange="document.querySelector('#searchResults').params = '{&quot;format&quot;:&quot;json&quot;, &quot;q&quot;:&quot;' + this.value + '&quot;, &quot;rows&quot;:&quot;500&quot;}'" -->
+
+
+          <paper-input id="search-input"
+             label="Type any topic e.g. product type, location, ..."
+             flex></paper-input>
+          <paper-icon-button icon="search"></paper-icon-button>
+          <paper-menu-button>
+             <paper-icon-button icon="more-vert"></paper-icon-button>
+             <paper-dropdown class="dropdown" transition="" halign="right">
+                <core-menu class="menu"  selected="0">
+                   <template repeat="{{bulkActions}}">
+                      <paper-item>{{}}</paper-item>
+                   </template>
+                </core-menu>
+             </paper-dropdown>
+          </paper-menu-button>
+<!--           <paper-progress id="progress" class="bottom fit" value="30"></paper-progress> -->
         </core-toolbar>
 
         <!-- Main Content -->
         <div class="content" horizontal layout fit>
+   
+   
+<!--           <more-route-selector> -->
+<!--           <core-pages> -->
 
-           <!-- The Search Result List -->
-              <core-list data="{{data}}" flex auto-vertical>
+             <!-- - SEARCH PAGE -->
+<!--              <section route="search"> -->
+<!--         <div class="content" style="visibility: hidden" vertical layout fit> -->
+              <core-list data="{{data}}">
                  <template>
                     <div class="row" layout horizontal center>
                        <core-image class="thumbnail-image"
                           src="{{model.thumbnail}}"
-                          preload fade
-                          data-index="{{index}}">
-                       </core-image>
+                          data-index="{{index}}"
+                          preload fade></core-image>
                        <div data-index="{{index}}">{{model.title}}</div>
                     </div>
                  </template>
               </core-list>
-
               <google-map id="map"
                           latitude="47.36" longitude="8.55" zoom="5"
-                          flex auto-vertical three>
+                          flex three>
               </google-map>
+<!--               </div> -->
+<!--              </section> -->
+
+<!--              - PROFILE PAGE -->
+<!--              <section route="profile"> -->
+<!--                 <h1>Profile...</h1> -->
+<!--               </section> -->
+
+<!--              - SETTINGS PAGE -->
+<!--              <section route="settings"> -->
+<!--                 <h1>Settings...</h1> -->
+<!--               </section> -->
+
+<!--            </core-animated-pages> -->
+<!--            </more-route-selector> -->
          </div>
       </core-header-panel>
     </core-drawer-panel>

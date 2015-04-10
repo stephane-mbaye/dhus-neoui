@@ -4,21 +4,33 @@ body {
   color: #333;
 }
 
-.content {
+#content {
   background: #e0e0e0;
   /* height: 100%; */
 }
 
+#logo {
+   width: 30px;
+   height: 30px;
+   border-radius: 50%;
+   border: 2px solid;
+   border-color: #fff;
+}
+
 core-list {
-   background: #ffffff;
-   min-width: 480px;
-   max-width: 480px;
+   background: #fff;
+   min-width: 400px;
+   max-width: 400px;
 }
 
 core-list .row {
-   background: white;
+   background: #fff;
    height: 80px;
    padding: 16px;
+   padding-left:8px;
+   border-color: #e0e0e0;
+   border-width: 1px;
+   border-bottom-style: solid
 }
 
 core-list .thumbnail-image {
@@ -26,6 +38,10 @@ core-list .thumbnail-image {
    width: 64px;
    height: 64px;
    margin-right: 16px;
+}
+
+paper-item {
+   color: #333;
 }
 
 google-map {
